@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.codefobi.startupproject.R;
 import com.codefobi.startupproject.adapters.ContentAdapter;
+import com.codefobi.startupproject.models.Content;
 import com.codefobi.startupproject.utils.DatabaseHelper;
 
 import org.json.JSONArray;
@@ -42,6 +43,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
 
         setRecycler();
+
+        /*Content content = new Content();
+        content.setSpecifier("0");
+        content.setTitle("آواتک");
+        content.setSpecifier("0");
+        content.setBody("ر ایران هم اکنون چند مجموعه در قالب شتاب دهنده مشغول به فعالیت هستند. آواتک، گروه دیموند ");
+
+        databaseHelper.addContent(content);*/
 
         toolbarImage.setOnClickListener(this);
 
