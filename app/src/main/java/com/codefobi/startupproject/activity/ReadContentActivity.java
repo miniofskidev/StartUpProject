@@ -1,5 +1,6 @@
 package com.codefobi.startupproject.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.codefobi.startupproject.R;
 import com.codefobi.startupproject.adapters.ReadContentAdapter;
@@ -20,7 +22,8 @@ public class ReadContentActivity extends AppCompatActivity implements View.OnCli
 
     private TextView toolbarTitle;
     private ImageView toolbarImage;
-    DatabaseHelper databaseHelper;
+    private DatabaseHelper databaseHelper;
+    private Intent intent ;
     private RecyclerView recyclerView;
 
     @Override
@@ -28,15 +31,19 @@ public class ReadContentActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_lesson);
 
-        init();
-
         databaseHelper = new DatabaseHelper(this);
 
-        ReadContentAdapter adapter = new ReadContentAdapter(this,databaseHelper.getReadBy("0"));
+        intent = getIntent();
+
+        init();
+
+        ReadContentAdapter adapter = new ReadContentAdapter(this,databaseHelper.getReadBy(intent.getStringExtra("WHO")));
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
         recyclerView.setAdapter(adapter);
+
+
     }
 
     private List<ReadContent> getData() {
@@ -104,7 +111,9 @@ public class ReadContentActivity extends AppCompatActivity implements View.OnCli
 
         toolbarImage.setOnClickListener(this);
 
-        toolbarTitle.setText("ReadContentActivity");
+        toolbarTitle.setText(intent.getStringExtra("TITLE"));
+        toolbarImage.setImageResource(R.drawable.arrow_right);
+        toolbarImage.setPadding(-20,30,0,30);
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -53,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        databaseHelper.addContent(content);
 
         toolbarImage.setOnClickListener(this);
+        toolbarImage.setImageResource(R.drawable.menu);
+        toolbarImage.setPadding(-20,25,0,25);
 
     }
 
@@ -68,8 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.toolbar_iv:
-//                drawerLayout.openDrawer(Gravity.RIGHT);
-                startActivity(new Intent(MainActivity.this , ReadContentActivity.class));
+                drawerLayout.openDrawer(Gravity.RIGHT);
                 break;
         }
     }

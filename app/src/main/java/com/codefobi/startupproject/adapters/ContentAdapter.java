@@ -1,6 +1,7 @@
 package com.codefobi.startupproject.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.codefobi.startupproject.R;
+import com.codefobi.startupproject.activity.ReadContentActivity;
 import com.codefobi.startupproject.models.Content;
 import com.squareup.picasso.Picasso;
 
@@ -103,14 +105,24 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.Holder> 
             imageView = (ImageView) itemView.findViewById(R.id.content_row_iv);
         }
 
-        public void setData(Content current, int position) {
+        public void setData(final Content current, int position) {
             this.current = current;
             this.position = position;
             title.setText(current.getTitle());
-            body.setText(current.getBody() );
+            body.setText(current.getBody());
             Picasso.with(context)
                     .load("http://api.androidhive.info/json/movies/1.jpg")
                     .into(imageView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(context, "works fine !" + current.getWhodoyou(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context , ReadContentActivity.class);
+                    intent.putExtra("WHO" , current.getWhodoyou());
+                    intent.putExtra("TITLE" , current.getTitle());
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 
