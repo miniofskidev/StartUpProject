@@ -69,6 +69,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(WHODOYOU , readContent.getWhodoyou());
         values.put(READ_SPECIFIER, readContent.getSpecifier());
         values.put(READ_TITLE, readContent.getTitle());
         values.put(READ_BODY, readContent.getBody());
@@ -83,6 +84,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(WHODOYOU , content.getWhodoyou());
         values.put(CONTENT_SPECIFIER, content.getSpecifier());
         values.put(CONTENT_TITLE, content.getTitle());
         values.put(CONTENT_BODY, content.getBody());
@@ -94,7 +96,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Content getContent(int id) {
 
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.query(CONTENT_TABLE, new String[]{CONTENT_ID,WHODOYOU , CONTENT_SPECIFIER, CONTENT_TITLE, CONTENT_BODY},
+        Cursor cursor = db.query(CONTENT_TABLE, new String[]{CONTENT_ID, WHODOYOU , CONTENT_SPECIFIER, CONTENT_TITLE, CONTENT_BODY},
                 CONTENT_ID + "=?", new String[]{String.valueOf(id)}, null, null, null);
 
         if (cursor != null) cursor.moveToFirst();
@@ -123,11 +125,45 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 content.setBody(cursor.getString(4));
 
                 contents.add(content);
+
+                Log.d("amin" , "Lets Do it :" + content.getWhodoyou());
             }
         }
         cursor.close();
 
         return contents;
+    }
+
+    public List<ReadContent> getReadBy(String WhoDoYou){
+        List<ReadContent> contentList = new ArrayList<>();
+
+        String selectQuery = "SELECT * FROM " + READ_TABLE + " WHERE " + WHODOYOU + " = " + "'" + WhoDoYou + "'";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery , null);
+
+        Log.d("amin" , "Initializing the cursor");
+
+        if (cursor != null){
+            while (cursor.moveToNext()){
+                ReadContent content = new ReadContent();
+                content.setWhodoyou(cursor.getString(1));
+                content.setSpecifier(cursor.getString(2));
+                content.setTitle(cursor.getString(3));
+                content.setBody(cursor.getString(4));
+                content.setImagePath(cursor.getString(5));
+
+                contentList.add(content);
+
+                Log.d("amin" , "Lets do it :" + String.valueOf(content.getID()));
+            }
+        }
+        cursor.close();
+
+        Log.d("AMIN" , "Loading Items from DataBase with a filter");
+
+        return contentList;
+
     }
 
     public List<ReadContent> getAllReads() {
@@ -149,6 +185,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 content.setImagePath(cursor.getString(5));
 
                 contentList.add(content);
+                Log.d("AMIN" , "lets do it :" + content.getWhodoyou());
             }
         }
         cursor.close();

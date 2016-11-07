@@ -32,7 +32,7 @@ public class ReadContentActivity extends AppCompatActivity implements View.OnCli
 
         databaseHelper = new DatabaseHelper(this);
 
-        ReadContentAdapter adapter = new ReadContentAdapter(this, databaseHelper.getAllReads());
+        ReadContentAdapter adapter = new ReadContentAdapter(this,databaseHelper.getReadBy("0"));
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);

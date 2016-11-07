@@ -44,13 +44,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         setRecycler();
 
-        /*Content content = new Content();
-        content.setSpecifier("0");
-        content.setTitle("آواتک");
-        content.setSpecifier("0");
-        content.setBody("ر ایران هم اکنون چند مجموعه در قالب شتاب دهنده مشغول به فعالیت هستند. آواتک، گروه دیموند ");
-
-        databaseHelper.addContent(content);*/
+//        Content content = new Content();
+//        content.setSpecifier("0");
+//        content.setTitle("آواتک");
+//        content.setWhodoyou("0");
+//        content.setBody("ر ایران هم اکنون چند مجموعه در قالب شتاب دهنده مشغول به فعالیت هستند. آواتک، گروه دیموند ");
+//
+//        databaseHelper.addContent(content);
 
         toolbarImage.setOnClickListener(this);
 
