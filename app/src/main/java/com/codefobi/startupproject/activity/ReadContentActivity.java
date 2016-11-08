@@ -18,6 +18,9 @@ import com.codefobi.startupproject.utils.DatabaseHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
+
 public class ReadContentActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView toolbarTitle;
@@ -40,9 +43,10 @@ public class ReadContentActivity extends AppCompatActivity implements View.OnCli
         ReadContentAdapter adapter = new ReadContentAdapter(this,databaseHelper.getReadBy(intent.getStringExtra("WHO")));
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
+        ScaleInAnimationAdapter alphaInAnimationAdapter = new ScaleInAnimationAdapter(adapter);
+        alphaInAnimationAdapter.setFirstOnly(true);
         recyclerView.setLayoutManager(llm);
-        recyclerView.setAdapter(adapter);
-
+        recyclerView.setAdapter(alphaInAnimationAdapter);
 
     }
 

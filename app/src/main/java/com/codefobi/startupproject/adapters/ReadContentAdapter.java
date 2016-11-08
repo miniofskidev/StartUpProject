@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.codefobi.startupproject.R;
 import com.codefobi.startupproject.models.ReadContent;
 import com.squareup.picasso.Picasso;
@@ -129,7 +131,13 @@ public class ReadContentAdapter extends RecyclerView.Adapter<ReadContentAdapter.
         public void setData(ReadContent current, int position) {
             this.current = current;
             this.position = position;
-            Picasso.with(context).load(current.getImagePath()).into(imageView);
+//            Picasso.with(context).load(current.getImagePath()).into(imageView);
+            Glide.with(context)
+                    .load(current.getImagePath())
+                    .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                    .skipMemoryCache(true)
+                    .dontAnimate()
+                    .into(imageView);
         }
     }
 
@@ -169,7 +177,13 @@ public class ReadContentAdapter extends RecyclerView.Adapter<ReadContentAdapter.
         public void setData(ReadContent current, int position) {
             this.current = current;
             this.position = position;
-            Picasso.with(context).load(current.getImagePath()).into(imageView);
+//            Picasso.with(context).load(current.getImagePath()).into(imageView);
+            Glide.with(context)
+                    .load(current.getImagePath())
+                    .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                    .skipMemoryCache(true)
+                    .dontAnimate()
+                    .into(imageView);
             title.setText(current.getTitle());
             body.setText(current.getBody());
         }
