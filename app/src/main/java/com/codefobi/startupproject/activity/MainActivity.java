@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private DatabaseHelper databaseHelper;
     TextView toolbarTitle;
-    ImageView toolbarImage;
+    ImageView toolbarImage , refreshButton;
     DrawerLayout drawerLayout;
     RecyclerView recyclerView;
 
@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toolbarImage = (ImageView) findViewById(R.id.toolbar_iv);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
+        refreshButton = (ImageView) findViewById(R.id.refresh_button);
 
         setRecycler();
 
@@ -54,6 +55,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        databaseHelper.addContent(content);
 
         toolbarImage.setOnClickListener(this);
+        refreshButton.setOnClickListener(this);
+
         toolbarImage.setImageResource(R.drawable.menu);
         toolbarImage.setPadding(-20,25,0,25);
 
@@ -72,6 +75,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
             case R.id.toolbar_iv:
                 drawerLayout.openDrawer(Gravity.RIGHT);
+                break;
+            case R.id.refresh_button:
+                refreshButton.animate().rotationBy(360 * 4).setDuration(1000).start();
                 break;
         }
     }
