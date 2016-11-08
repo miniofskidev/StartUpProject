@@ -27,12 +27,16 @@
                 <TextView
                     android:id="@+id/content_row_title"
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
+                    android:paddingLeft="8dp"
+                    android:textSize="@dimen/titleFontSize"
+                    android:layout_height="wrap_content"
                     android:text="sample text" />
 
                 <TextView
                     android:id="@+id/content_row_body"
                     android:layout_width="match_parent"
+                    android:padding="8dp"
+                    android:textSize="@dimen/bodyFontSize"
                     android:layout_height="match_parent"
                     android:text="sample sample text" />
 
