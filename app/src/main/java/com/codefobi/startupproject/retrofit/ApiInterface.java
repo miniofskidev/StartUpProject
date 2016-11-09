@@ -13,10 +13,10 @@ import retrofit2.http.GET;
  */
 public interface  ApiInterface {
 
-    @GET("content.json")
+    @GET("headContent.json")
     Call<List<Content>> contentCall();
 
-    @GET("headContent.json")
+    @GET("content.json")
     Call<List<ReadContent>> readContentCall();
 
 }

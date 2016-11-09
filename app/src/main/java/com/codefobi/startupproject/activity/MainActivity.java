@@ -16,12 +16,14 @@ import android.widget.Toast;
 import com.codefobi.startupproject.R;
 import com.codefobi.startupproject.adapters.ContentAdapter;
 import com.codefobi.startupproject.models.Content;
+import com.codefobi.startupproject.models.ReadContent;
 import com.codefobi.startupproject.retrofit.ApiClient;
 import com.codefobi.startupproject.retrofit.ApiInterface;
 import com.codefobi.startupproject.utils.DatabaseHelper;
 
 import org.json.JSONArray;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private DatabaseHelper databaseHelper;
     TextView toolbarTitle;
-    ImageView toolbarImage , refreshButton;
+    ImageView toolbarImage, refreshButton;
     DrawerLayout drawerLayout;
     RecyclerView recyclerView;
 
@@ -51,18 +53,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         call.enqueue(new Callback<List<Content>>() {
             @Override
             public void onResponse(Call<List<Content>> call, Response<List<Content>> response) {
-                if (response.isSuccessful()) Log.d("amin" , "congrats");
+                recyclerView.setAdapter(new ContentAdapter(MainActivity.this,response.body()));
             }
 
             @Override
             public void onFailure(Call<List<Content>> call, Throwable t) {
-                Log.e("amin" , t.toString());
+                Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
-    private void init(){
+    private void init() {
         toolbarTitle = (TextView) findViewById(R.id.toolbar_tv);
         toolbarImage = (ImageView) findViewById(R.id.toolbar_iv);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -71,24 +72,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         setRecycler();
 
-//        Content content = new Content();
-//        content.setSpecifier("0");
-//        content.setTitle("آواتک");
-//        content.setWhodoyou("0");
-//        content.setBody("ر ایران هم اکنون چند مجموعه در قالب شتاب دهنده مشغول به فعالیت هستند. آواتک، گروه دیموند ");
-//
-//        databaseHelper.addContent(content);
-
         toolbarImage.setOnClickListener(this);
         refreshButton.setOnClickListener(this);
 
         toolbarImage.setImageResource(R.drawable.menu);
-        toolbarImage.setPadding(-20,25,0,25);
+        toolbarImage.setPadding(-20, 25, 0, 25);
 
     }
 
     private void setRecycler() {
-        ContentAdapter adapter = new ContentAdapter(this,databaseHelper.getAllContents());
+        ContentAdapter adapter = new ContentAdapter(this, databaseHelper.getAllContents());
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
@@ -97,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.toolbar_iv:
                 drawerLayout.openDrawer(Gravity.RIGHT);
                 break;

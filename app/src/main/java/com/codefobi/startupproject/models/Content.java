@@ -3,24 +3,30 @@ package com.codefobi.startupproject.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by tosantechnolocal on 11/3/2016.
  */
 public class Content {
 
     private int ID;
-    @SerializedName("specifier") @Expose(deserialize = false)
+    @SerializedName("specifier")
+    @Expose(deserialize = false)
     private String Specifier;
 
-    @SerializedName("title") @Expose(deserialize = false)
-    private String title ;
+    @SerializedName("title")
+    @Expose(deserialize = false)
+    private String title;
 
-    @SerializedName("body") @Expose(deserialize = false)
-    private String body ;
+    @SerializedName("body")
+    @Expose(deserialize = false)
+    private String body;
 
-    @SerializedName("whodoyou") @Expose(deserialize = false)
+    @SerializedName("whodoyou")
+    @Expose(deserialize = false)
     private String whodoyou;
-
 
     public Content() {
         //Empty constructor
