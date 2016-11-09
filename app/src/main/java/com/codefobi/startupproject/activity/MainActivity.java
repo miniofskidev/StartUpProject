@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,9 +16,17 @@ import android.widget.Toast;
 import com.codefobi.startupproject.R;
 import com.codefobi.startupproject.adapters.ContentAdapter;
 import com.codefobi.startupproject.models.Content;
+import com.codefobi.startupproject.retrofit.ApiClient;
+import com.codefobi.startupproject.retrofit.ApiInterface;
 import com.codefobi.startupproject.utils.DatabaseHelper;
 
 import org.json.JSONArray;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -35,6 +44,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         databaseHelper = new DatabaseHelper(this);
 
         init();
+
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+
+        Call<List<Content>> call = apiService.contentCall();
+        call.enqueue(new Callback<List<Content>>() {
+            @Override
+            public void onResponse(Call<List<Content>> call, Response<List<Content>> response) {
+                if (response.isSuccessful()) Log.d("amin" , "congrats");
+            }
+
+            @Override
+            public void onFailure(Call<List<Content>> call, Throwable t) {
+                Log.e("amin" , t.toString());
+            }
+        });
+
     }
 
     private void init(){

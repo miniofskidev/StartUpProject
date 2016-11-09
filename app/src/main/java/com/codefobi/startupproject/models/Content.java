@@ -1,12 +1,25 @@
 package com.codefobi.startupproject.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by tosantechnolocal on 11/3/2016.
  */
 public class Content {
 
     private int ID;
-    private String Specifier, title, body ,whodoyou;
+    @SerializedName("specifier") @Expose(deserialize = false)
+    private String Specifier;
+
+    @SerializedName("title") @Expose(deserialize = false)
+    private String title ;
+
+    @SerializedName("body") @Expose(deserialize = false)
+    private String body ;
+
+    @SerializedName("whodoyou") @Expose(deserialize = false)
+    private String whodoyou;
 
 
     public Content() {

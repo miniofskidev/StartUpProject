@@ -24,7 +24,7 @@ import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 public class ReadContentActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView toolbarTitle;
-    private ImageView toolbarImage;
+    private ImageView toolbarImage , refreshButton;
     private DatabaseHelper databaseHelper;
     private Intent intent ;
     private RecyclerView recyclerView;
@@ -111,9 +111,12 @@ public class ReadContentActivity extends AppCompatActivity implements View.OnCli
     private void init() {
         toolbarTitle = (TextView) findViewById(R.id.toolbar_tv);
         toolbarImage = (ImageView) findViewById(R.id.toolbar_iv);
+        refreshButton = (ImageView) findViewById(R.id.refresh_button);
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
 
         toolbarImage.setOnClickListener(this);
+
+        refreshButton.setVisibility(View.INVISIBLE);
 
         toolbarTitle.setText(intent.getStringExtra("TITLE"));
         toolbarImage.setImageResource(R.drawable.arrow_right);

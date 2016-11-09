@@ -11,12 +11,12 @@ import retrofit2.http.GET;
 /**
  * Created by tosantechnolocal on 11/8/2016.
  */
-public abstract class ApiInterface {
+public interface  ApiInterface {
 
-    @GET("/amin/content.json")
-    abstract Call<List<Content>> contentCall();
+    @GET("content.json")
+    Call<List<Content>> contentCall();
 
-    @GET("/amin/readcontent.json")
-    abstract Call<List<ReadContent>> readContentCall();
+    @GET("headContent.json")
+    Call<List<ReadContent>> readContentCall();
 
 }
