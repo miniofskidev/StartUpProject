@@ -43,10 +43,8 @@ public class ReadContentActivity extends AppCompatActivity implements View.OnCli
         ReadContentAdapter adapter = new ReadContentAdapter(this,databaseHelper.getReadBy(intent.getStringExtra("WHO")));
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
-        ScaleInAnimationAdapter alphaInAnimationAdapter = new ScaleInAnimationAdapter(adapter);
-        alphaInAnimationAdapter.setFirstOnly(true);
         recyclerView.setLayoutManager(llm);
-        recyclerView.setAdapter(alphaInAnimationAdapter);
+        recyclerView.setAdapter(adapter);
 
     }
 

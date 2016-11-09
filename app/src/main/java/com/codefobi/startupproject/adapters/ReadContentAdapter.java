@@ -207,5 +207,4 @@ public class ReadContentAdapter extends RecyclerView.Adapter<ReadContentAdapter.
             body.setText(current.getBody());
         }
     }
-
 }

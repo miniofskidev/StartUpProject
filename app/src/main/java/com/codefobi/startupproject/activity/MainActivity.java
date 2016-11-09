@@ -77,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         toolbarImage.setImageResource(R.drawable.menu);
         toolbarImage.setPadding(-20, 25, 0, 25);
-
     }
 
     private void setRecycler() {
