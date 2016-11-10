@@ -1,13 +1,28 @@
 package com.codefobi.startupproject.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by tosantechnolocal on 11/3/2016.
  */
 public class ReadContent {
 
     private int ID;
-    private String  title, body, specifier;
-    private String imagePath , whodoyou;
+    @SerializedName("title") @Expose(deserialize = false)
+    private String title;
+
+    @SerializedName("body") @Expose(deserialize = false)
+    private String body;
+
+    @SerializedName("specifier") @Expose(deserialize = false)
+    private String specifier;
+
+    @SerializedName("imageurl") @Expose(deserialize = false)
+    private String imagePath;
+
+    @SerializedName("whodoyou") @Expose(deserialize = false)
+    private String whodoyou;
 
     /**
      * Specifier values

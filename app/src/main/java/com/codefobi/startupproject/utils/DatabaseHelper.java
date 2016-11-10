@@ -9,7 +9,6 @@ import android.util.Log;
 
 import com.codefobi.startupproject.models.Content;
 import com.codefobi.startupproject.models.ReadContent;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;

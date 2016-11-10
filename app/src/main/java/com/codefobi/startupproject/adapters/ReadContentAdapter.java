@@ -2,6 +2,7 @@ package com.codefobi.startupproject.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.codefobi.startupproject.R;
 import com.codefobi.startupproject.models.ReadContent;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -138,6 +138,7 @@ public class ReadContentAdapter extends RecyclerView.Adapter<ReadContentAdapter.
                     .skipMemoryCache(true)
                     .dontAnimate()
                     .into(imageView);
+            Log.d("Adapter" , "Created a row for ImageOnly Layout");
         }
     }
 
@@ -156,6 +157,7 @@ public class ReadContentAdapter extends RecyclerView.Adapter<ReadContentAdapter.
             this.current = current;
             this.position = position;
             textView.setText(current.getBody());
+            Log.d("Adapter" , "Created a row for BodyOnly layout");
         }
     }
 
@@ -186,6 +188,7 @@ public class ReadContentAdapter extends RecyclerView.Adapter<ReadContentAdapter.
                     .into(imageView);
             title.setText(current.getTitle());
             body.setText(current.getBody());
+            Log.d("Adapter" , "Created a row for Full Layout");
         }
     }
 
@@ -205,6 +208,7 @@ public class ReadContentAdapter extends RecyclerView.Adapter<ReadContentAdapter.
             this.position = position;
             title.setText(current.getTitle());
             body.setText(current.getBody());
+            Log.d("Adapter" , "Created a row for noImage Layout");
         }
     }
 }

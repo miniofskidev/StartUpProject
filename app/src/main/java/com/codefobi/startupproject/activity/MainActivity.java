@@ -1,5 +1,6 @@
 package com.codefobi.startupproject.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +30,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -46,21 +48,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         databaseHelper = new DatabaseHelper(this);
 
         init();
-
-        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-
-        Call<List<Content>> call = apiService.contentCall();
-        call.enqueue(new Callback<List<Content>>() {
-            @Override
-            public void onResponse(Call<List<Content>> call, Response<List<Content>> response) {
-                recyclerView.setAdapter(new ContentAdapter(MainActivity.this,response.body()));
-            }
-
-            @Override
-            public void onFailure(Call<List<Content>> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "No Internet Connection", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     private void init() {
@@ -101,5 +88,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void recyclerViewClick(View view) {
         Toast.makeText(MainActivity.this, "works fine", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }

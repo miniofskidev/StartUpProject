@@ -1,16 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:gravity="center"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     tools:context="com.codefobi.startupproject.activity.SplashActivity">
 
-    <ImageView
-        android:id="@+id/splash_imageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/user"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_height="match_parent">
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/splash_imageView"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:src="@drawable/user"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:padding="15dp"
+            android:gravity="center"
+            android:textColor="#f5cea1"
+            android:layout_height="wrap_content"
+            android:text="Loading Components..."/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_gravity="bottom"
+        android:background="#f5cea1"
+        android:layout_height="40dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="Designed and Developed By CodeFobi"/>
+
+    </LinearLayout>
+
+</FrameLayout>

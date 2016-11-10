@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.codefobi.startupproject.R;
 import com.codefobi.startupproject.activity.ReadContentActivity;
 import com.codefobi.startupproject.models.Content;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -110,9 +109,9 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.Holder> 
             this.position = position;
             title.setText(current.getTitle());
             body.setText(current.getBody());
-            Picasso.with(context)
+            /*Picasso.with(context)
                     .load("http://api.androidhive.info/json/movies/1.jpg")
-                    .into(imageView);
+                    .into(imageView);*/
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -145,9 +144,9 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.Holder> 
             this.position = position;
             title.setText(current.getTitle());
             body.setText(current.getBody());
-            Picasso.with(context).
+            /*Picasso.with(context).
                     load("http://api.androidhive.info/json/movies/2.jpg").
-                    into(imageView);
+                    into(imageView);*/
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
